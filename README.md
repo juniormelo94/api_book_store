@@ -7,20 +7,6 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
 ## API With Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
@@ -36,12 +22,12 @@ git clone https://github.com/juniormelo94/api_book_store.git
 ````
 
 ## Database
-### create a database(mysql) with the following settings:
+### Create a database(mysql) with the following settings:
 
 ```` 
-DB_DATABASE=book_store
-DB_USERNAME=root
-DB_PASSWORD=root
+Database: book_store
+Username: root
+Password: root
 ````
 
 ## Require
@@ -50,13 +36,23 @@ DB_PASSWORD=root
 
 ## Installation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Step 1: Rename the .env file
 
-- git clone [https://github.com/juniormelo94/crawlerLaravel.git](https://github.com/juniormelo94/api_book_store).
-- Renomear o arquivo ".env.example" para ".env".
-- Abrir o terminal e percorrer até a pasta do projeto, depois digite o comando "composer install".
-- Criar um novo banco de dados(MySQL) com o nome "book_store".
-- Digite o comando "php artisan migrate" para criar as tabelas necessárias para o nosso projeto.
+```` 
+De: ".env.dev"
+Para ".env"
+````
+### Step 2: Install dependencies via composer
+
+```` 
+composer install
+````
+
+### Step 3: Generate database tables
+
+```` 
+php artisan migrate
+````
 
 ## Laravel Sponsors
 
