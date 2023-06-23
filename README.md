@@ -25,11 +25,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-## Require
-
-- PHP 8.0.
-
-## Baixar
+## Download Project 
 
 ````
 git clone git@github.com:juniormelo94/api_book_store.git
@@ -38,6 +34,19 @@ ou
 ````
 git clone https://github.com/juniormelo94/api_book_store.git
 ````
+
+## Database
+### create a database(mysql) with the following settings:
+
+```` 
+DB_DATABASE=book_store
+DB_USERNAME=root
+DB_PASSWORD=root
+````
+
+## Require
+
+- PHP 8.0.
 
 ## Installation
 
