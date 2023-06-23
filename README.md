@@ -60,9 +60,47 @@ php artisan migrate
 php artisan serve
 ````
 
+
 ## Consume API
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Register user
+
+- POST [http://127.0.0.1:8000/api/register](http://127.0.0.1:8000/api/register)
+
+Request:
+```` 
+POST http://127.0.0.1:8000/api/register
+
+{
+    "name": "John Doe",
+    "email": "john@doe.com",
+    "password": "123456",
+    "password_confirmation": "123456"
+}
+````
+Response:
+
+### login
+
+- POST [http://127.0.0.1:8000/api/login](http://127.0.0.1:8000/api/login)
+
+Request:
+```` 
+POST http://127.0.0.1:8000/api/login
+
+{
+    "email": "john@doe.com",
+    "password": "123456"
+}
+````
+Response:
+
+### logout
+
+Request:
+- POST [http://127.0.0.1:8000/api/logout](http://127.0.0.1:8000/api/logout)
+
+
 
 ### Premium Partners
 
