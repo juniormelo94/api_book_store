@@ -112,6 +112,7 @@ Response:
 
 Request:
 - POST [http://127.0.0.1:8000/api/logout](http://127.0.0.1:8000/api/logout)
+  Authorization: Bearer + token
 
 Request:
 ```` 
@@ -125,6 +126,144 @@ Response:
   "message": "Logged out successfully"
 }
 ````
+#### Url with authentication
+Authorization: Bearer token
+
+### All books
+
+Request:
+- GET [http://localhost:8000/api/books](http://localhost:8000/api/books)
+
+Request:
+```` 
+GET http://localhost:8000/api/books
+Authorization: Bearer 1|HJUtjoI6YxSmUfJHVIebFkdouHOIPJvuBXvaVUzd
+````
+Response:
+```` 
+{
+  "status": "ok",
+  "data": [
+    {
+      "id": 1,
+      "name": "Livro 1",
+      "isbn": 1,
+      "value": "1.10"
+    },
+    {
+      "id": 4,
+      "name": "Livro 4",
+      "isbn": 0,
+      "value": "0.00"
+    },
+    {
+      "id": 5,
+      "name": "Livro 5",
+      "isbn": 5,
+      "value": "5.00"
+    }
+  ]
+}
+````
+#### Url with authentication
+Authorization: Bearer token
+
+### Register book
+
+Request:
+- POST [http://127.0.0.1:8000/api/books](http://127.0.0.1:8000/api/books)
+
+Request:
+```` 
+POST http://127.0.0.1:8000/api/books
+Authorization: Bearer 1|HJUtjoI6YxSmUfJHVIebFkdouHOIPJvuBXvaVUzd
+
+{
+    "name": "Livro 1",
+    "isbn": 205,
+    "value": 11.50
+}
+````
+Response:
+```` 
+{
+  "status": "ok",
+  "message": "book record created"
+}
+````
+#### Url with authentication
+Authorization: Bearer token
+
+### Book by id
+
+Request:
+- GET [http://127.0.0.1:8000/api/books/{id}](http://127.0.0.1:8000/api/books/{id})
+
+Request:
+```` 
+GET http://127.0.0.1:8000/api/books/1
+Authorization: Bearer 1|HJUtjoI6YxSmUfJHVIebFkdouHOIPJvuBXvaVUzd
+````
+Response:
+```` 
+{
+  "status": "ok",
+  "data": {
+    "id": 1,
+    "name": "Livro 1",
+    "isbn": 100,
+    "value": 11.10
+  }
+}
+````
+#### Url with authentication
+Authorization: Bearer token
+
+### Update book data by id
+
+Request:
+- PUT [http://127.0.0.1:8000/api/books/{id}](http://127.0.0.1:8000/api/books/{id})
+
+Request:
+```` 
+PUT http://127.0.0.1:8000/api/books/1
+Authorization: Bearer 1|HJUtjoI6YxSmUfJHVIebFkdouHOIPJvuBXvaVUzd
+
+{
+    "name": "Livro 2",
+    "isbn": 200,
+    "value": 2.20
+}
+````
+Response:
+```` 
+{
+  "status": "ok",
+  "message": "records updated successfully"
+}
+````
+#### Url with authentication
+Authorization: Bearer token
+
+### Delete book by id
+
+Request:
+- DELETE [http://127.0.0.1:8000/api/books/{id}](http://127.0.0.1:8000/api/books/{id})
+
+Request:
+```` 
+DELETE http://127.0.0.1:8000/api/books/1
+Authorization: Bearer 1|HJUtjoI6YxSmUfJHVIebFkdouHOIPJvuBXvaVUzd
+````
+Response:
+```` 
+{
+  "status": "ok",
+  "message": "successfully deleted records"
+}
+````
+#### Url with authentication
+Authorization: Bearer token
 
 
 
