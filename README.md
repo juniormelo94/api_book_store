@@ -79,8 +79,15 @@ POST http://127.0.0.1:8000/api/register
 }
 ````
 Response:
+```` 
+{
+  "status": "ok",
+  "message": "user record created",
+  "token": "1|HJUtjoI6YxSmUfJHVIebFkdouHOIPJvuBXvaVUzd"
+}
+````
 
-### login
+### Login
 
 - POST [http://127.0.0.1:8000/api/login](http://127.0.0.1:8000/api/login)
 
@@ -94,11 +101,33 @@ POST http://127.0.0.1:8000/api/login
 }
 ````
 Response:
+```` 
+{
+  "status": "ok",
+  "token": "1|l1z7epNiQTD5VKU4d35nLl4zlblURwwCzqLPXdt7"
+}
+````
 
-### logout
+### Logout
 
 Request:
 - POST [http://127.0.0.1:8000/api/logout](http://127.0.0.1:8000/api/logout)
+
+Request:
+```` 
+POST http://127.0.0.1:8000/api/logout
+Authorization: Bearer 1|HJUtjoI6YxSmUfJHVIebFkdouHOIPJvuBXvaVUzd
+````
+Response:
+```` 
+{
+  "status": "ok",
+  "message": "Logged out successfully"
+}
+````
+
+
+
 
 
 
