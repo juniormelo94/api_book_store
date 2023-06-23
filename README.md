@@ -40,7 +40,7 @@ Password: root
 
 ```` 
 De: ".env.dev"
-Para ".env"
+Para: ".env"
 ````
 ### Step 2: Install dependencies via composer
 
@@ -54,7 +54,13 @@ composer install
 php artisan migrate
 ````
 
-## Laravel Sponsors
+### Step 4: Start server
+
+```` 
+php artisan serve
+````
+
+## Consume API
 
 We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
