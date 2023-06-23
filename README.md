@@ -65,7 +65,7 @@ php artisan serve
 
 ### Register user
 
-- POST [http://127.0.0.1:8000/api/register](http://127.0.0.1:8000/api/register)
+- **POST** [http://127.0.0.1:8000/api/register](http://127.0.0.1:8000/api/register)
 
 Request:
 ```` 
@@ -89,11 +89,11 @@ Response:
 
 ### Login
 
-- POST [http://127.0.0.1:8000/api/login](http://127.0.0.1:8000/api/login)
+- **POST** [http://127.0.0.1:8000/api/login](http://127.0.0.1:8000/api/login)
 
 Request:
 ```` 
-POST http://127.0.0.1:8000/api/login
+http://127.0.0.1:8000/api/login
 
 {
     "email": "john@doe.com",
@@ -110,13 +110,12 @@ Response:
 
 ### Logout
 
-Request:
-- POST [http://127.0.0.1:8000/api/logout](http://127.0.0.1:8000/api/logout)<br>
+- **POST** [http://127.0.0.1:8000/api/logout](http://127.0.0.1:8000/api/logout)<br>
   Authorization: Bearer + token
 
 Request:
 ```` 
-POST http://127.0.0.1:8000/api/logout
+http://127.0.0.1:8000/api/logout
 Authorization: Bearer 1|HJUtjoI6YxSmUfJHVIebFkdouHOIPJvuBXvaVUzd
 ````
 Response:
@@ -126,17 +125,15 @@ Response:
   "message": "Logged out successfully"
 }
 ````
-#### Url with authentication
-Authorization: Bearer token
 
 ### All books
 
-Request:
-- GET [http://localhost:8000/api/books](http://localhost:8000/api/books)
+- **GET** [http://localhost:8000/api/books](http://localhost:8000/api/books)<br>
+  Authorization: Bearer + token
 
 Request:
 ```` 
-GET http://localhost:8000/api/books
+http://localhost:8000/api/books
 Authorization: Bearer 1|HJUtjoI6YxSmUfJHVIebFkdouHOIPJvuBXvaVUzd
 ````
 Response:
@@ -165,17 +162,15 @@ Response:
   ]
 }
 ````
-#### Url with authentication
-Authorization: Bearer token
 
 ### Register book
 
-Request:
-- POST [http://127.0.0.1:8000/api/books](http://127.0.0.1:8000/api/books)
+- **POST** [http://127.0.0.1:8000/api/books](http://127.0.0.1:8000/api/books)<br>
+  Authorization: Bearer + token
 
 Request:
 ```` 
-POST http://127.0.0.1:8000/api/books
+http://127.0.0.1:8000/api/books
 Authorization: Bearer 1|HJUtjoI6YxSmUfJHVIebFkdouHOIPJvuBXvaVUzd
 
 {
@@ -191,17 +186,15 @@ Response:
   "message": "book record created"
 }
 ````
-#### Url with authentication
-Authorization: Bearer token
 
 ### Book by id
 
-Request:
-- GET [http://127.0.0.1:8000/api/books/{id}](http://127.0.0.1:8000/api/books/{id})
+- **GET** [http://127.0.0.1:8000/api/books/{id}](http://127.0.0.1:8000/api/books/{id})<br>
+  Authorization: Bearer + token
 
 Request:
 ```` 
-GET http://127.0.0.1:8000/api/books/1
+http://127.0.0.1:8000/api/books/1
 Authorization: Bearer 1|HJUtjoI6YxSmUfJHVIebFkdouHOIPJvuBXvaVUzd
 ````
 Response:
@@ -216,17 +209,15 @@ Response:
   }
 }
 ````
-#### Url with authentication
-Authorization: Bearer token
 
 ### Update book data by id
 
-Request:
-- PUT [http://127.0.0.1:8000/api/books/{id}](http://127.0.0.1:8000/api/books/{id})
+- **PUT** [http://127.0.0.1:8000/api/books/{id}](http://127.0.0.1:8000/api/books/{id})<br>
+  Authorization: Bearer + token
 
 Request:
 ```` 
-PUT http://127.0.0.1:8000/api/books/1
+http://127.0.0.1:8000/api/books/1
 Authorization: Bearer 1|HJUtjoI6YxSmUfJHVIebFkdouHOIPJvuBXvaVUzd
 
 {
@@ -242,17 +233,15 @@ Response:
   "message": "records updated successfully"
 }
 ````
-#### Url with authentication
-Authorization: Bearer token
 
 ### Delete book by id
 
-Request:
-- DELETE [http://127.0.0.1:8000/api/books/{id}](http://127.0.0.1:8000/api/books/{id})
+- **DELETE** [http://127.0.0.1:8000/api/books/{id}](http://127.0.0.1:8000/api/books/{id})<br>
+  Authorization: Bearer + token
 
 Request:
 ```` 
-DELETE http://127.0.0.1:8000/api/books/1
+http://127.0.0.1:8000/api/books/1
 Authorization: Bearer 1|HJUtjoI6YxSmUfJHVIebFkdouHOIPJvuBXvaVUzd
 ````
 Response:
@@ -262,42 +251,3 @@ Response:
   "message": "successfully deleted records"
 }
 ````
-#### Url with authentication
-Authorization: Bearer token
-
-
-
-
-
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
