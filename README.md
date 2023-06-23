@@ -65,7 +65,7 @@ php artisan serve
 
 ### Register user
 
-- **POST** [http://127.0.0.1:8000/api/register](http://127.0.0.1:8000/api/register)
+- **POST [http://127.0.0.1:8000/api/register](http://127.0.0.1:8000/api/register)**
 
 Request:
 ```` 
@@ -89,7 +89,7 @@ Response:
 
 ### Login
 
-- **POST** [http://127.0.0.1:8000/api/login](http://127.0.0.1:8000/api/login)
+- **POST [http://127.0.0.1:8000/api/login](http://127.0.0.1:8000/api/login)**
 
 Request:
 ```` 
@@ -110,7 +110,7 @@ Response:
 
 ### Logout
 
-- **POST** [http://127.0.0.1:8000/api/logout](http://127.0.0.1:8000/api/logout)<br>
+- **POST [http://127.0.0.1:8000/api/logout](http://127.0.0.1:8000/api/logout)**<br>
   Authorization: Bearer + token
 
 Request:
@@ -128,7 +128,7 @@ Response:
 
 ### All books
 
-- **GET** [http://localhost:8000/api/books](http://localhost:8000/api/books)<br>
+- **GET [http://localhost:8000/api/books](http://localhost:8000/api/books)**<br>
   Authorization: Bearer + token
 
 Request:
@@ -165,7 +165,7 @@ Response:
 
 ### Register book
 
-- **POST** [http://127.0.0.1:8000/api/books](http://127.0.0.1:8000/api/books)<br>
+- **POST [http://127.0.0.1:8000/api/books](http://127.0.0.1:8000/api/books)**<br>
   Authorization: Bearer + token
 
 Request:
@@ -189,7 +189,7 @@ Response:
 
 ### Book by id
 
-- **GET** [http://127.0.0.1:8000/api/books/{id}](http://127.0.0.1:8000/api/books/{id})<br>
+- **GET [http://127.0.0.1:8000/api/books/{id}](http://127.0.0.1:8000/api/books/{id})**<br>
   Authorization: Bearer + token
 
 Request:
@@ -212,7 +212,7 @@ Response:
 
 ### Update book data by id
 
-- **PUT** [http://127.0.0.1:8000/api/books/{id}](http://127.0.0.1:8000/api/books/{id})<br>
+- **PUT [http://127.0.0.1:8000/api/books/{id}](http://127.0.0.1:8000/api/books/{id})**<br>
   Authorization: Bearer + token
 
 Request:
@@ -236,7 +236,7 @@ Response:
 
 ### Delete book by id
 
-- **DELETE** [http://127.0.0.1:8000/api/books/{id}](http://127.0.0.1:8000/api/books/{id})<br>
+- **DELETE [http://127.0.0.1:8000/api/books/{id}](http://127.0.0.1:8000/api/books/{id})**<br>
   Authorization: Bearer + token
 
 Request:
