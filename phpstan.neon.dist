@@ -4,6 +4,10 @@ parameters:
     level: 9
     paths:
         - app
+        - database/factories
+        - database/seeders
+        - routes
+        - tests
     ignoreErrors:
         - '#Cannot call method tokens\(\) on mixed.#'
         - '#Cannot call method currentAccessToken\(\) on mixed.#'
