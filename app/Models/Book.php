@@ -26,32 +26,4 @@ class Book extends Model
         'isbn',
         'value',
     ];
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
-     */
-    static public function rules(): array
-    {
-        return [
-            'name' => 'required',
-            'isbn' => 'integer',
-            'value' => 'numeric',
-        ];
-    }
-
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array<string, string>
-     */
-    static public function messages(): array
-    {
-        return [
-            'name.required' => 'The name is required',
-            'isbn.integer' => 'The isbn must only have integers',
-            'value.numeric' => 'The value must have only numbers',
-        ];
-    }
 }

@@ -3,94 +3,64 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use Exception;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\Request;
-use App\Models\User;
+use Throwable;
+use App\Http\Requests\StoreUserRequest;
+use App\Repositories\UserRepository;
+use App\Http\Resources\AuthResource;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
     /**
-     * Handle an authentication attempt.
+     * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  App\Repositories\UserRepository  $userRepository
+     * @return void
      */
-    public function login(Request $request)
+    public function __construct(protected UserRepository $userRepository)
     {
-        try {
-            $validator = Validator::make($request->all(), 
-            [
-                "email"  => ["required", "email"],
-                "password" => ["required", "string"],
-            ], User::messages());
-    
-            if ($validator->fails()) {
-                return response()->json([
-                    "status" => "error",
-                    "message" => $validator->errors()
-                ], 400);
-            }
-    
-            $credentials = $request->only('email', 'password');
-    
-            if (Auth::attempt($credentials)) {
-                $user = Auth::user();
-                $token = $user->createToken('auth-token')->plainTextToken;
-    
-                return response()->json([
-                    "status" => "ok",
-                    "token" => $token
-                ], 201);
-            }
-    
-            return response()->json([
-                "status" => "error",
-                "message" => "invalid credentials"
-            ], 422);
-        } catch (Exception $e) {
-            return response()->json([
-                "status" => "error",
-                "message" => "error when trying to authenticate the user"
-            ], 400);
-        }
+
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  App\Http\Requests\StoreUserRequest $request
+     * @return App\Http\Resources\AuthResource|\Illuminate\Http\Response
      */
-    public function register(Request $request)
+    public function register(StoreUserRequest $request)
     {
         try {
-            $validator = Validator::make($request->all(), User::rules(), User::messages());
+            $user = $this->userRepository->registerUser($request);
+            
+            return new AuthResource($user);
+        } catch (Throwable $th) {
+            return response()->json(["message" => "error when trying to register the user"], 500);
+        }
+    }
+
+    /**
+     * Handle an authentication attempt.
+     *
+     * @param  App\Http\Requests\StoreUserRequest $request
+     * @return App\Http\Resources\AuthResource|\Illuminate\Http\Response
+     */
+    public function login(StoreUserRequest $request)
+    {
+        try {
+            $credentials = $request->only('email', 'password');
+
+            if (Auth::attempt($credentials)) {
+                if (!empty($request->user()->tokens)) {
+                    $request->user()->tokens()->delete();
+                }
     
-            if ($validator->fails()) {
-                return response()->json([
-                    "status" => "error",
-                    "message" => $validator->errors()
-                ], 400);
+                return new AuthResource(Auth::user());
             }
     
-            $request['password'] = Hash::make($request['password']);
-    
-            $user = User::create($request->all());
-            
-            $token = $user->createToken('auth-token')->plainTextToken;
-
-            return response()->json([
-                "status" => "ok",
-                "message" => "user record created",
-                "token" => $token
-            ], 201);
-        } catch (Exception $e) {
-            return response()->json([
-                "status" => "error",
-                "message" => "error when trying to register the user"
-            ], 400);
+            return response()->json(["message" => "invalid credentials"], 422);
+        } catch (Throwable $th) {
+            return response()->json(["message" => "error when trying to authenticate the user"], 500);
         }
     }
 
@@ -105,15 +75,9 @@ class AuthController extends Controller
         try {
             $request->user()->currentAccessToken()->delete();
 
-            return response()->json([
-                "status" => "ok",
-                'message' => 'Logged out successfully'
-            ], 200);
-        } catch (Exception $e) {
-            return response()->json([
-                "status" => "error",
-                "message" => "error when trying to logout the user"
-            ], 400);
+            return response()->json(['message' => 'Logged out successfully'], 200);
+        } catch (Throwable $th) {
+            return response()->json(["message" => "error when trying to logout the user"], 500);
         }
     }
 }

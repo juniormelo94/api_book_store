@@ -2,169 +2,107 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
+use App\Repositories\BookRepository;
+use App\Http\Resources\BookResource;
 use App\Http\Controllers\Controller;
-use Exception;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreUpdateBookRequest;
+use Throwable;
 use Illuminate\Support\Facades\Validator;
 
 class BookController extends Controller
 {
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  App\Repositories\BookRepository  $bookRepository
+     * @return void
+     */
+    public function __construct(protected BookRepository $bookRepository)
+    {
+
+    }
+
+    /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return App\Http\Resources\BookResource|\Illuminate\Http\Response
      */
     public function index()
-    {
+    {  
         try {
-            $books = Book::select("id", "name", "isbn", "value")->get();
-    
-            return response()->json([
-                "status" => "ok",
-                "data" => $books
-            ], 200);
-        } catch (Exception $e) {
-            return response()->json([
-                "status" => "error",
-                "message" => "error when trying to fetch books"
-            ], 400);
+            return BookResource::collection($this->bookRepository->getAllBook());
+            
+        } catch (Throwable $th) {
+            return response()->json(["message" => "error when trying to fetch books"], 500);
         }
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\StoreUpdateBookRequest $request
+     * @return App\Http\Resources\BookResource|\Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateBookRequest $request)
     {
         try {
-            $validator = Validator::make($request->all(), Book::rules(), Book::messages());
+            $book = $this->bookRepository->createBook($request);
 
-            if ($validator->fails()) {
-                return response()->json([
-                    "status" => "error",
-                    "message" => $validator->errors()
-                ], 400);
-            }
-
-            Book::create($request->all());
-
-            return response()->json([
-                "status" => "ok",
-                "message" => "book record created"
-            ], 201);
-        } catch (Exception $e) {
-            return response()->json([
-                "status" => "error",
-                "message" => "error when trying to register the book"
-            ], 400);
+            return new BookResource($book);
+        } catch (Throwable $th) {
+            return response()->json(["message" => "error when trying to register the book"], 500);
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return App\Http\Resources\BookResource|\Illuminate\Http\Response
      */
     public function show($id)
     {
         try {
-            $book = Book::select("id", "name", "isbn", "value")->find($id);
-    
-            if (!$book) {
-                return response()->json([
-                    "status" => "error",
-                    "message" => "book not found"
-                ], 404);
-            }
-            
-            return response()->json([
-                "status" => "ok",
-                "data" => $book
-            ], 200);
-        } catch (Exception $e) {
-            return response()->json([
-                "status" => "error",
-                "message" => "error when trying to fetch the book"
-            ], 400);
+            $book = $this->bookRepository->getBookById($id);
+        
+            return new BookResource($book);
+        } catch (Throwable $th) {
+            return response()->json(["message" => "error when trying to fetch the book"], 500);
         }
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\StoreUpdateBookRequest $request
+     * @param int $id
+     * @return App\Http\Resources\BookResource|\Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdateBookRequest $request, $id)
     {
         try {
-            $validator = Validator::make($request->all(), Book::rules(), Book::messages());
+            $book = $this->bookRepository->updateBook($request, $id);
 
-            if ($validator->fails()) {
-                return response()->json([
-                    "status" => "error",
-                    "message" => $validator->errors()
-                ], 400);
-            }
-
-            $book = Book::find($id);
-    
-            if (!$book) {
-                return response()->json([
-                    "status" => "error",
-                    "message" => "book not found"
-                ], 404);
-            }
-
-            $book->update($request->all());
-
-            return response()->json([
-                "status" => "ok",
-                "message" => "records updated successfully"
-            ], 200);
-        } catch (Exception $e) {
-            return response()->json([
-                "status" => "error",
-                "message" => "error when trying to update the book"
-            ], 400);
+            return new BookResource($book);
+        } catch (Throwable $th) {
+            return response()->json(["message" => "error when trying to update the book"], 500);
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         try {
-            $book = Book::find($id);
-    
-            if (!$book) {
-                return response()->json([
-                    "status" => "error",
-                    "message" => "book not found"
-                ], 404);
-            }
+            $this->bookRepository->deleteBook($id);
 
-            $book->delete();
-
-            return response()->json([
-                "status" => "ok",
-                "message" => "successfully deleted records"
-            ], 200);
-        } catch (Exception $e) {
-            return response()->json([
-                "status" => "error",
-                "message" => "error when trying to delete book"
-            ], 400);
+            return response()->json(["message" => "successfully deleted records"], 200);
+        } catch (Throwable $th) {
+            return response()->json(["message" => "error when trying to delete book"], 500);
         }
     }
 }
