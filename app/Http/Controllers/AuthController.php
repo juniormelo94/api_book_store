@@ -4,14 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\AuthResource;
-// use Illuminate\Http\JsonResponse;
-use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use App\Http\Requests\StoreUserRequest;
 use Throwable;
 use App\Repositories\UserRepository;
-use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -54,7 +50,7 @@ class AuthController extends Controller
             $credentials = $request->only('email', 'password');
 
             if (Auth::attempt($credentials)) {
-                if (!empty($request->user()->tokens)) {
+                if (!empty($request->user()->tokens()->first())) {
                     $request->user()->tokens()->delete();
                 }
     

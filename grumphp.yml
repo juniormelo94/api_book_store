@@ -3,4 +3,4 @@ grumphp:
         phpcs: 
             standard: [PSR2, PSR12]
         phpstan:
-            configuration: 'phpstan.neon'
+            configuration: 'phpstan.neon.dist'

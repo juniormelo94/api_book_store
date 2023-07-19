@@ -7,7 +7,6 @@ use App\Http\Resources\BookResource;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateBookRequest;
 use Throwable;
-use Illuminate\Support\Facades\Validator;
 
 class BookController extends Controller
 {
