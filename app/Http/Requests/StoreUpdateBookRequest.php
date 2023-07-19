@@ -39,7 +39,7 @@ class StoreUpdateBookRequest extends FormRequest
      * @return void
      *
      */
-    public function failedValidation(Validator $validator)
+    public function failsedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json($validator->errors(), 422));
     }
