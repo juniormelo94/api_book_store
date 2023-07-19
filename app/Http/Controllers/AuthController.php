@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\AuthResource;
+// use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\StoreUserRequest;
 use Throwable;
@@ -67,7 +69,7 @@ class AuthController extends Controller
     /**
      * User logged out.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function logout(Request $request)
