@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use Throwable;
-use App\Http\Requests\StoreUserRequest;
-use App\Repositories\UserRepository;
 use App\Http\Resources\AuthResource;
+use Illuminate\Http\Response;
+use App\Http\Requests\StoreUserRequest;
+use Throwable;
+use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -14,7 +15,7 @@ class AuthController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Repositories\UserRepository  $userRepository
+     * @param  \App\Repositories\UserRepository  $userRepository
      * @return void
      */
     public function __construct(protected UserRepository $userRepository)
@@ -24,8 +25,8 @@ class AuthController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Http\Requests\StoreUserRequest $request
-     * @return App\Http\Resources\AuthResource|\Illuminate\Http\Response
+     * @param  \App\Http\Requests\StoreUserRequest $request
+     * @return \App\Http\Resources\AuthResource|\Illuminate\Http\JsonResponse
      */
     public function register(StoreUserRequest $request)
     {
@@ -41,8 +42,8 @@ class AuthController extends Controller
     /**
      * Handle an authentication attempt.
      *
-     * @param  App\Http\Requests\StoreUserRequest $request
-     * @return App\Http\Resources\AuthResource|\Illuminate\Http\Response
+     * @param  \App\Http\Requests\StoreUserRequest $request
+     * @return \App\Http\Resources\AuthResource|\Illuminate\Http\JsonResponse
      */
     public function login(StoreUserRequest $request)
     {
@@ -67,7 +68,7 @@ class AuthController extends Controller
      * User logged out.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function logout(Request $request)
     {

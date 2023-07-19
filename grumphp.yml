@@ -2,3 +2,5 @@ grumphp:
     tasks:
         phpcs: 
             standard: [PSR2, PSR12]
+        phpstan:
+            configuration: 'phpstan.neon'
