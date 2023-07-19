@@ -15,7 +15,6 @@ class BookRepository implements BookRepositoryInterface
      */
     public function __construct(protected Book $model)
     {
-
     }
 
     /**
@@ -38,7 +37,7 @@ class BookRepository implements BookRepositoryInterface
     {
         $book = $this->model;
 
-        return tap($book, function ($book) use ($request){
+        return tap($book, function ($book) use ($request) {
             $book->name = $request->name;
             $book->isbn = $request->isbn;
             $book->value = $request->value;
@@ -68,7 +67,7 @@ class BookRepository implements BookRepositoryInterface
     {
         $book = $this->model->findOrFail($id);
 
-        return tap($book, function ($book) use ($request){
+        return tap($book, function ($book) use ($request) {
             $book->name = $request->name;
             $book->isbn = $request->isbn;
             $book->value = $request->value;

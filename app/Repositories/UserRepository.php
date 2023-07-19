@@ -16,7 +16,6 @@ class UserRepository implements UserRepositoryInterface
      */
     public function __construct(protected User $model)
     {
-
     }
 
     /**
@@ -29,7 +28,7 @@ class UserRepository implements UserRepositoryInterface
     {
         $user = $this->model;
 
-        return tap($user, function ($user) use ($request){
+        return tap($user, function ($user) use ($request) {
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = Hash::make($request['password']);

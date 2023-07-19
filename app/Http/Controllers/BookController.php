@@ -19,7 +19,6 @@ class BookController extends Controller
      */
     public function __construct(protected BookRepository $bookRepository)
     {
-
     }
 
     /**
@@ -28,10 +27,9 @@ class BookController extends Controller
      * @return App\Http\Resources\BookResource|\Illuminate\Http\Response
      */
     public function index()
-    {  
+    {
         try {
             return BookResource::collection($this->bookRepository->getAllBook());
-            
         } catch (Throwable $th) {
             return response()->json(["message" => "error when trying to fetch books"], 500);
         }

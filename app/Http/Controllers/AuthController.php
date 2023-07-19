@@ -19,7 +19,6 @@ class AuthController extends Controller
      */
     public function __construct(protected UserRepository $userRepository)
     {
-
     }
 
     /**
