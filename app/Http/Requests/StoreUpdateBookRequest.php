@@ -21,7 +21,7 @@ class StoreUpdateBookRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return array<string>
      */
     public function rules()
     {
@@ -39,7 +39,7 @@ class StoreUpdateBookRequest extends FormRequest
      * @return void
      *
      */
-    public function failsedValidation(Validator $validator)
+    public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json($validator->errors(), 422));
     }
